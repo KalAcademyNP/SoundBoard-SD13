@@ -40,14 +40,25 @@
             <SplitView.Pane>
                 <ListView Name="MenuItemsListView" 
                           IsItemClickEnabled="True" 
-                          ItemClick="MenuItemsListView_ItemClick" />
+                          ItemsSource="{x:Bind MenuItems}"
+                          ItemClick="MenuItemsListView_ItemClick" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:MenuItem">
+                            <StackPanel Orientation="Horizontal" Margin="-10,10,10,10">
+                                <Image Source="{x:Bind IconFile}" Height="35" Width="35" />
+                                <TextBlock Text="{x:Bind Category}" FontSize="18" Margin="10,10,0,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid>
+                <Grid Margin="10, 0, 0, 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    <MediaElement Name="SoundMedia" AutoPlay="True" />
                     <TextBlock Grid.Row="0" Name="CategoryTextBlock"
                                Text="All Sounds" FontSize="24"/>
 

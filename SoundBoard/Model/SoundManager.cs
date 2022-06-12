@@ -31,5 +31,16 @@ namespace SoundBoard.Model
             sounds.Clear();
             allSounds.ForEach(sound => sounds.Add(sound));
         }
+
+        public static void GetAllSoundsByCategory(
+            ObservableCollection<Sound> sounds, SoundCategory category)
+        {
+            var allSounds = getSounds();
+            var filteredSounds = allSounds.Where(
+                sound => sound.Category == category).ToList();
+
+            sounds.Clear();
+            filteredSounds.ForEach(sound => sounds.Add(sound));
+        }
     }
 }
